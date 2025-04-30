@@ -38,7 +38,7 @@
 <body style="font-family: sans-serif; background-color: #fffbea;">
   <div style="padding: 20px;">
     <div id="profile" style="float: right; background: #ffaa00; color: white; padding: 10px 20px; border-radius: 50px;"></div>
-    <h1 style="color: #ff9900;">Selamat datang di InderTopUp</h1>
+    <h1 style="color: #2e2d2d;">Selamat datang di InderTopUp</h1>
     <p>Pilih game favoritmu dan top up sekarang juga!</p>
   </div>
 
@@ -55,3 +55,31 @@
   </script>
 </body>
 </html>
+<script>
+  const isLoggedIn = localStorage.getItem('loggedIn');
+  const user = JSON.parse(localStorage.getItem('user'));
+
+  if (isLoggedIn && user) {
+    const initials = `${user.firstName[0] || ''}${user.lastName[0] || ''}`.toUpperCase();
+    document.getElementById('profile').innerText = initials;
+  } else {
+    document.getElementById('profile').innerText = '👤';
+  }
+</script>
+<div style="margin-top: 10px;">
+  <a href="login.html" id="loginLink">Login</a>
+  <a href="#" id="logoutLink" style="display: none;" onclick="logout()">Logout</a>
+</div>
+
+<script>
+  if (isLoggedIn) {
+    document.getElementById('loginLink').style.display = 'none';
+    document.getElementById('logoutLink').style.display = 'inline';
+  }
+
+  function logout() {
+    localStorage.removeItem('loggedIn');
+    localStorage.removeItem('user');
+    location.reload();
+  }
+</script>

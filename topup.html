@@ -1,8 +1,34 @@
+<!-- topup.html -->
 <!DOCTYPE html>
-<html>
-<head><title>Top Up - InderTopUp</title></head>
-<body style='font-family:sans-serif;'>
-  <h1>Halaman Top Up</h1>
-  <p>Pilih game dan nominal top up di sini.</p>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Top Up - InderTopUp</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body style="font-family: sans-serif; background-color: #fffbea;">
+  <div style="max-width: 500px; margin: 60px auto; padding: 30px; background: white; border-radius: 12px; border: 1px solid #ffa000;">
+    <h2 style="text-align: center; color: #ff6600;">💎 Top Up Game</h2>
+    <form action="invoice.html">
+      <label>Pilih Game</label><br />
+      <select style="width: 100%; padding: 10px; margin: 10px 0;">
+        <option>Mobile Legends</option>
+        <option>Free Fire</option>
+        <option>PUBG Mobile</option>
+        <option>Valorant</option>
+        <option>Genshin Impact</option>
+      </select>
+      <label>ID Game</label><br />
+      <input type="text" placeholder="Masukkan ID Game" style="width: 100%; padding: 10px; margin: 10px 0;" /><br />
+      <label>Jumlah Diamond</label><br />
+      <select style="width: 100%; padding: 10px; margin: 10px 0;">
+        <option>86 Diamond - Rp20.000</option>
+        <option>172 Diamond - Rp38.000</option>
+        <option>257 Diamond - Rp56.000</option>
+      </select>
+      <button type="submit" style="background: #ff6600; color: white; padding: 12px; border: none; width: 100%; border-radius: 6px;">Lanjut ke Pembayaran</button>
+    </form>
+  </div>
 </body>
 </html>

@@ -2,33 +2,48 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Daftar - InderTopUp</title>
-  <link rel="stylesheet" href="style.css" />
 </head>
 <body style="font-family: sans-serif; background-color: #fffbea;">
   <div style="max-width: 400px; margin: 60px auto; padding: 30px; background: white; border-radius: 12px; border: 1px solid #ffc107;">
     <h2 style="text-align: center; color: #ffa000;">📝 Daftar Akun InderTopUp</h2>
-    <form>
+    <form onsubmit="registerUser(event)">
       <label>Nama Depan</label><br />
-      <input type="text" placeholder="Contoh: Hafidz" style="width: 100%; padding: 10px; margin: 10px 0;" /><br />
-
+      <input type="text" id="firstName" required style="width: 100%; padding: 10px; margin: 10px 0;"><br />
       <label>Nama Belakang</label><br />
-      <input type="text" placeholder="Contoh: Indrawan" style="width: 100%; padding: 10px; margin: 10px 0;" /><br />
-
+      <input type="text" id="lastName" required style="width: 100%; padding: 10px; margin: 10px 0;"><br />
       <label>No. WhatsApp</label><br />
-      <input type="text" placeholder="08xxxxxxxxxx" style="width: 100%; padding: 10px; margin: 10px 0;" /><br />
-
+      <input type="text" id="phone" required style="width: 100%; padding: 10px; margin: 10px 0;"><br />
       <label>Kata Sandi</label><br />
-      <input type="password" placeholder="Minimal 6 karakter" style="width: 100%; padding: 10px; margin: 10px 0;" /><br />
-
+      <input type="password" id="password" required style="width: 100%; padding: 10px; margin: 10px 0;"><br />
       <label>Konfirmasi Kata Sandi</label><br />
-      <input type="password" placeholder="Ulangi kata sandi" style="width: 100%; padding: 10px; margin: 10px 0;" /><br />
-
+      <input type="password" id="confirmPassword" required style="width: 100%; padding: 10px; margin: 10px 0;"><br />
       <button type="submit" style="background: #ffaa00; color: white; padding: 12px; border: none; width: 100%; border-radius: 6px;">Daftar</button>
     </form>
     <p style="text-align: center; margin-top: 15px;">Sudah punya akun? <a href="login.html">Login</a></p>
   </div>
+
+  <script>
+    function registerUser(e) {
+      e.preventDefault();
+      const firstName = document.getElementById('firstName').value;
+      const lastName = document.getElementById('lastName').value;
+      const phone = document.getElementById('phone').value;
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+
+      if (password !== confirmPassword) {
+        alert('Konfirmasi sandi tidak cocok!');
+        return;
+      }
+
+      const user = { firstName, lastName, phone, password };
+      localStorage.setItem('user', JSON.stringify(user));
+      alert('Pendaftaran berhasil! Silakan login.');
+      window.location.href = 'login.html';
+    }
+  </script>
 </body>
 </html>

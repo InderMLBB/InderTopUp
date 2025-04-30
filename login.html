@@ -1,8 +1,54 @@
+<!-- login.html -->
 <!DOCTYPE html>
-<html>
-<head><title>Login - InderTopUp</title></head>
-<body style='font-family:sans-serif;'>
-  <h1>Halaman Login</h1>
-  <p>Form login akan ditempatkan di sini.</p>
-</body>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - InderTopUp</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body style="font-family: sans-serif; background-color: #fffbea">
+    <div
+      style="
+        max-width: 400px;
+        margin: 60px auto;
+        padding: 30px;
+        background: white;
+        border-radius: 12px;
+        border: 1px solid #ffc107;
+      "
+    >
+      <h2 style="text-align: center; color: #ffa000">🔐 Login ke InderTopUp</h2>
+      <form>
+        <label>No. Telepon</label><br />
+        <input
+          type="text"
+          placeholder="08xxxxxxxxxx"
+          style="width: 100%; padding: 10px; margin: 10px 0"
+        /><br />
+        <label>Kata Sandi</label><br />
+        <input
+          type="password"
+          placeholder="******"
+          style="width: 100%; padding: 10px; margin: 10px 0"
+        /><br />
+        <button
+          type="submit"
+          style="
+            background: #ff9900;
+            color: white;
+            padding: 12px;
+            border: none;
+            width: 100%;
+            border-radius: 6px;
+          "
+        >
+          Login
+        </button>
+      </form>
+      <p style="text-align: center; margin-top: 15px">
+        Belum punya akun? <a href="register.html">Daftar</a>
+      </p>
+    </div>
+  </body>
 </html>

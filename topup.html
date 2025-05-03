@@ -1,34 +1,155 @@
 <!-- topup.html -->
 <!DOCTYPE html>
 <html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Top Up - InderTopUp</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body style="font-family: sans-serif; background-color: #fffbea">
+    <div
+      style="
+        max-width: 500px;
+        margin: 60px auto;
+        padding: 30px;
+        background: white;
+        border-radius: 12px;
+        border: 1px solid #ffa000;
+      "
+    >
+      <h2 style="text-align: center; color: #ff6600">💎 Top Up Game</h2>
+      <form action="invoice.html">
+        <label>Pilih Game</label><br />
+        <select style="width: 100%; padding: 10px; margin: 10px 0">
+          <option>Mobile Legends</option>
+          <option>Free Fire</option>
+          <option>PUBG Mobile</option>
+          <option>Valorant</option>
+          <option>Genshin Impact</option>
+          <option>Roblox</option>
+        </select>
+        <label>ID Game</label><br />
+        <input
+          type="text"
+          placeholder="Masukkan ID Game"
+          style="width: 100%; padding: 10px; margin: 10px 0"
+        /><br />
+        <label>Jumlah Diamond</label><br />
+        <select style="width: 100%; padding: 10px; margin: 10px 0">
+          <option>86 Diamond - Rp25.533</option>
+          <option>100 Diamond - Rp39.000</option>
+          <option>200 Diamond - Rp61.000</option>
+        </select>
+        <button
+          type="submit"
+          style="
+            background: #ff6600;
+            color: white;
+            padding: 12px;
+            border: none;
+            width: 100%;
+            border-radius: 6px;
+          "
+        >
+          Lanjut ke Pembayaran
+        </button>
+      </form>
+    </div>
+  </body>
+</html>
+<!-- topup.html -->
+<!DOCTYPE html>
+<html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Top Up - InderTopUp</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <script>
+    const paketData = {
+      mlbb: {
+        label: 'Diamond',
+        options: [86, 172, 257, 344, 429]
+      },
+      ff: {
+        label: 'Diamond',
+        options: [70, 140, 355, 720, 1000]
+      },
+      roblox: {
+        label: 'Robux',
+        options: [80, 400, 800, 1700]
+      },
+      valo: {
+        label: 'VP',
+        options: [125, 420, 700, 1375]
+      },
+      pubg: {
+        label: 'UC',
+        options: [60, 180, 325, 660]
+      },
+      genshin: {
+        label: 'Genesis Crystal',
+        options: [60, 300, 980, 1980]
+      }
+    };
+
+    function loadTopupOptions() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const game = urlParams.get('game') || 'mlbb';
+      const container = document.getElementById('paketContainer');
+      const gameName = document.getElementById('gameName');
+      const formLabel = document.getElementById('currencyLabel');
+
+      gameName.textContent = game.toUpperCase();
+
+      const data = paketData[game] || { label: 'Item', options: [100, 200, 300] };
+      formLabel.textContent = data.label;
+
+      container.innerHTML = '';
+      data.options.forEach(amount => {
+        const option = document.createElement('option');
+        option.value = amount;
+        option.textContent = `${amount} ${data.label}`;
+        container.appendChild(option);
+      });
+    }
+
+    function handleSubmit(event) {
+      event.preventDefault();
+      const game = new URLSearchParams(window.location.search).get('game') || 'mlbb';
+      const amount = document.getElementById('paketContainer').value;
+      window.location.href = `invoice.html?game=${game}&amount=${amount}`;
+    }
+
+    window.onload = loadTopupOptions;
+  </script>
 </head>
-<body style="font-family: sans-serif; background-color: #fffbea;">
-  <div style="max-width: 500px; margin: 60px auto; padding: 30px; background: white; border-radius: 12px; border: 1px solid #ffa000;">
-    <h2 style="text-align: center; color: #ff6600;">💎 Top Up Game</h2>
-    <form action="invoice.html">
-      <label>Pilih Game</label><br />
-      <select style="width: 100%; padding: 10px; margin: 10px 0;">
-        <option>Mobile Legends</option>
-        <option>Free Fire</option>
-        <option>PUBG Mobile</option>
-        <option>Valorant</option>
-        <option>Genshin Impact</option>
-      </select>
-      <label>ID Game</label><br />
-      <input type="text" placeholder="Masukkan ID Game" style="width: 100%; padding: 10px; margin: 10px 0;" /><br />
-      <label>Jumlah Diamond</label><br />
-      <select style="width: 100%; padding: 10px; margin: 10px 0;">
-        <option>86 Diamond - Rp20.000</option>
-        <option>172 Diamond - Rp38.000</option>
-        <option>257 Diamond - Rp56.000</option>
-      </select>
-      <button type="submit" style="background: #ff6600; color: white; padding: 12px; border: none; width: 100%; border-radius: 6px;">Lanjut ke Pembayaran</button>
-    </form>
-  </div>
+<body>
+  <header>
+    <img src="assets/logo.png" alt="Logo InderTopUp" class="logo">
+    <h1>Top Up <span id="gameName"></span></h1>
+  </header>
+
+  <nav class="navbar">
+    <a href="index.html">Beranda</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="profile.html">Profil</a>
+  </nav>
+
+  <main>
+    <section class="topup-section">
+      <form onsubmit="handleSubmit(event)">
+        <label for="paketContainer" id="currencyLabel">Diamond</label>
+        <select id="paketContainer" required></select>
+
+        <button type="submit" class="btn">Beli Sekarang</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 InderTopUp. Semua Hak Dilindungi.</p>
+  </footer>
 </body>
 </html>

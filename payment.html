@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pilih Metode Pembayaran</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f7f7f7;
+        padding: 20px;
+      }
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+      .payment-list {
+        max-width: 400px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+      .payment-btn {
+        padding: 15px;
+        background-color: #fff;
+        border: 2px solid #007bff;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        text-align: center;
+        color: #007bff;
+        transition: background-color 0.3s ease;
+      }
+      .payment-btn:hover {
+        background-color: #007bff;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Pilih Metode Pembayaran</h1>
+    <div class="payment-list">
+      <div class="payment-btn" onclick="pilihMetode('DANA')">DANA</div>
+      <div class="payment-btn" onclick="pilihMetode('GOPAY')">GOPAY</div>
+      <div class="payment-btn" onclick="pilihMetode('QRIS')">QRIS</div>
+      <div class="payment-btn" onclick="pilihMetode('OVO')">OVO</div>
+      <div class="payment-btn" onclick="pilihMetode('TRANSFER BANK')">
+        TRANSFER BANK
+      </div>
+      <div class="payment-btn" onclick="pilihMetode('INDOMARET')">
+        INDOMARET
+      </div>
+      <div class="payment-btn" onclick="pilihMetode('ALFAMART')">ALFAMART</div>
+    </div>
+
+    <script>
+      function pilihMetode(metode) {
+        localStorage.setItem("metodePembayaran", metode);
+        window.location.href = "invoice.html";
+      }
+    </script>
+  </body>
+</html>
